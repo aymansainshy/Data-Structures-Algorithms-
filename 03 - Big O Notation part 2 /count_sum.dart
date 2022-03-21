@@ -8,15 +8,17 @@ void main() {
 
   print('AddUpTo excuted in ${stopwatch.elapsed}');
 }
+                                //    9
+// Sum of n = 10 .... 1+2+3+4+....+ (n-1) + (n)
 
 // Sum of n = 5 .... 5+4+3+2+1    // O(n)
 double addUpTo(int n) {
   double total = 0;
 
   for (int i = 1; i <= n; i++) {
-  
     total += i;
   }
+
   return total;
 }
 
