@@ -12,7 +12,7 @@ int binarySearch(List list, int value) {
 
   int middle = ((start + end) / 2).floor();
 
-  while (list[middle] != value) {
+  while (list[middle] != value && start <= end) {
     print("$start ---- $middle ---- $end");
     print("${list[start]} --- ${list[middle]} --- ${list[end]}\n");
 
@@ -25,5 +25,6 @@ int binarySearch(List list, int value) {
     middle = ((start + end) / 2).floor();
   }
 
-  return middle;
+  if (list[middle] == value) return middle;
+  return -1;
 }
