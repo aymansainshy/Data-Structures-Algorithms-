@@ -6,7 +6,7 @@ void main() {
   // binarySearch(numbers, 13);
 }
 
-int binarySearch(List list, int value) {
+int binarySearch(List list, int value) { //O(log n)
   int start = 0;
   int end = list.length - 1;
 
@@ -30,7 +30,7 @@ int binarySearch(List list, int value) {
 
 
 
-// Recursive Binary Search ..................
+// Recursive Binary Search .................. O(log n)
 int binarySearch2(List list, int start, int end, int value) {
 
   if (end >= start) {
