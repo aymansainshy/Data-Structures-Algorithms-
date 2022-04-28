@@ -6,6 +6,9 @@ void main() {
   // binarySearch(numbers, 13);
 }
 
+
+// For Only Sorted Arreys ...
+
 int binarySearch(List list, int value) { //O(log n)
   int start = 0;
   int end = list.length - 1;
