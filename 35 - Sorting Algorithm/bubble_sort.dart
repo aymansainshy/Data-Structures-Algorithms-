@@ -1,7 +1,7 @@
 void main() {
-  List<int> num = [8, 4, 5, 2, 1, 0];
+  List<int> num = [8, 4, 2, 5, 1, 0];
 
-  print(bubbleSort(num));
+  print(bubbleSort2(num));
 }
 
 List<int> bubbleSort(List<int> list) {
@@ -24,10 +24,10 @@ List<int> bubbleSort2(List<int> list) {
   bool swapped;
   int count = 0;
 
-  for (int i = list.length; i > 0; i--) {
+  for (int i = 0; i < list.length - 1; i++) {
     swapped = false;
-    
-    for (int j = 0; j < i - 1; j++) {
+
+    for (int j = 0; j < list.length - i - 1; j++) {
       count++;
 
       //  Swap ..
@@ -37,10 +37,13 @@ List<int> bubbleSort2(List<int> list) {
         list[j + 1] = temp;
         swapped = true;
       }
-
     }
-    if (swapped) break;
+    if (swapped == false) break;
   }
   print("Number of iteration : $count");
   return list;
 }
+
+
+// Best case is O(n)
+// Worst case is O(n^2)
