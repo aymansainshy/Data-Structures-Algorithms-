@@ -38,6 +38,7 @@ List<int> bubbleSort2(List<int> list) {
         swapped = true;
       }
     }
+    
     if (swapped == false) break;
   }
   print("Number of iteration : $count");
