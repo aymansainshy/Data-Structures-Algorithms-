@@ -6,17 +6,17 @@ void main() {
 List<int> insertionSortAlgo(List<int> list) {
   // Start from the second element in array ..
   for (int i = 1; i < list.length; i++) {
-    //Choosing the first element in out unsorted subarray .
+    // Choosing the first element in out unsorted subarray .
     int current = list[i];
 
-    //Finding the position of the last element in the sorted subarray .
+    // Finding the position of the last element in the sorted subarray .
     int j = i - 1;
-
+                    
     while (j >= 0 && list[j] > current) {
-      list[j + 1] = list[j];
+      list[j + 1] = list[j]; 
       j--;
     }
-
+         
     list[j + 1] = current;
   }
   return list;

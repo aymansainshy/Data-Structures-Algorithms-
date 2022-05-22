@@ -1,7 +1,8 @@
 void main() {
   List<int> num = [8, 4, 2, 5, 1, 0];
-    print(selectionSortAlog(num));
+  print(selectionSortAlog(num));
 }
+
 
 // Selection Sort algorithm ...O(n^2)
 List<int> selectionSortAlog(List<int> list) {
