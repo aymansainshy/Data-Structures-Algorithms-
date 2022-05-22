@@ -17,6 +17,7 @@ Map countChart(String text) {
   //   var charactor = String.fromCharCode(rune);
   //   print(charactor);
   //  });
+  
   for (int i = 0; i < lowerCaseText.length; i++) {
     String charactor = lowerCaseText[i];
     // Charactor found in the map ?? + 1
