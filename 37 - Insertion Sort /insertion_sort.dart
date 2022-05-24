@@ -43,3 +43,8 @@ List<int> insertionSortForLoop(List<int> list) {
 
 // Start from the second element in array ..
 // Insertion Sort algorithm ...O(n^2)
+
+// Base case is O(n)
+// Worst Case is O(n^2)
+
+// Space Complexty : O(1)

@@ -33,6 +33,8 @@ List<int> bubbleSort(List<int> list) {
 // Best case is O(n)
 // Worst case is O(n^2)
 
+// Space Complexty : O(1)
+
 List<int> bubbleSortWhile(List<int> list) {
   bool swapped = true;
 

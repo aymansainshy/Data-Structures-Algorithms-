@@ -3,8 +3,10 @@ void main() {
   print(selectionSortAlog(num));
 }
 
-
 // Selection Sort algorithm ...O(n^2)
+// Best and Worst case is O(n^2)
+
+// Space Complexty : O(1)
 List<int> selectionSortAlog(List<int> list) {
   for (int i = 0; i < list.length; i++) {
     // Find the smallest emlemnt in the list ...
@@ -18,11 +20,17 @@ List<int> selectionSortAlog(List<int> list) {
 
     // Swap the smallest element with the first element ...
     if (smallest != i) {
-      int temp = list[i];
-      list[i] = list[smallest];
-      list[smallest] = temp;
+      swapp(list, i, smallest);
     }
   }
 
   return list;
+}
+
+
+
+void swapp(List<int> list, int i, int smallest) {
+  int temp = list[i];
+  list[i] = list[smallest];
+  list[smallest] = temp;
 }
