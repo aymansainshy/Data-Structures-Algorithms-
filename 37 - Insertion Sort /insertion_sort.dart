@@ -11,16 +11,17 @@ List<int> insertionSortAlgo(List<int> list) {
 
     // Finding the position of the last element in the sorted subarray .
     int j = i - 1;
-                    
+
     while (j >= 0 && list[j] > current) {
-      list[j + 1] = list[j]; 
+      list[j + 1] = list[j];
       j--;
     }
-         
+
     list[j + 1] = current;
   }
   return list;
 }
+
 
 
 

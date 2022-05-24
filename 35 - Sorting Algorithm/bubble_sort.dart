@@ -1,26 +1,11 @@
 void main() {
   List<int> num = [8, 4, 2, 5, 1, 0];
 
-  print(bubbleSort2(num));
-}
-
-List<int> bubbleSort(List<int> list) {
-  for (int i = 0; i < list.length; i++) {
-    for (int j = 0; j < list.length - 1; j++) {
-      if (list[j] > list[j + 1]) {
-        //  Swap ..
-        int temp = list[j];
-
-        list[j] = list[j + 1];
-        list[j + 1] = temp;
-      }
-    }
-  }
-  return list;
+  print(bubbleSortWhile(num));
 }
 
 // Improved bubble Sort ...
-List<int> bubbleSort2(List<int> list) {
+List<int> bubbleSort(List<int> list) {
   bool swapped;
   int count = 0;
 
@@ -32,13 +17,11 @@ List<int> bubbleSort2(List<int> list) {
 
       //  Swap ..
       if (list[j] > list[j + 1]) {
-        int temp = list[j];
-        list[j] = list[j + 1];
-        list[j + 1] = temp;
+        swapp(list, j);
         swapped = true;
       }
     }
-    
+
     if (swapped == false) break;
   }
   print("Number of iteration : $count");
@@ -46,5 +29,34 @@ List<int> bubbleSort2(List<int> list) {
 }
 
 
+
 // Best case is O(n)
 // Worst case is O(n^2)
+
+List<int> bubbleSortWhile(List<int> list) {
+  bool swapped = true;
+
+  while (swapped) {
+    swapped = false;
+
+    for (int k = 0; k < list.length - 1; k++) {
+      if (list[k] > list[k + 1]) {
+        swapp(list, k);
+        swapped = true;
+      }
+    }
+
+    if (swapped == false) break;
+  }
+
+  return list;
+}
+
+
+
+
+void swapp(List<int> list, int index) {
+  int temp = list[index];
+  list[index] = list[index + 1];
+  list[index + 1] = temp;
+}
