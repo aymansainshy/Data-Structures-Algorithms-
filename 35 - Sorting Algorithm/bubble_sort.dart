@@ -4,36 +4,33 @@ void main() {
   print(bubbleSortWhile(num));
 }
 
-// Improved bubble Sort ...
-List<int> bubbleSort(List<int> list) {
+
+// Best case is O(n)
+// Worst case is O(n^2)
+
+// Space Complexty : O(1)  
+
+
+List<int> bubbleSortAlgo(List<int> list) {
   bool swapped;
-  int count = 0;
 
   for (int i = 0; i < list.length - 1; i++) {
     swapped = false;
 
     for (int j = 0; j < list.length - i - 1; j++) {
-      count++;
-
-      //  Swap ..
       if (list[j] > list[j + 1]) {
-        swapp(list, j);
+        swapp(list, j, j + 1);
         swapped = true;
       }
     }
 
     if (swapped == false) break;
   }
-  print("Number of iteration : $count");
+
   return list;
 }
 
 
-
-// Best case is O(n)
-// Worst case is O(n^2)
-
-// Space Complexty : O(1)
 
 List<int> bubbleSortWhile(List<int> list) {
   bool swapped = true;
@@ -43,7 +40,7 @@ List<int> bubbleSortWhile(List<int> list) {
 
     for (int k = 0; k < list.length - 1; k++) {
       if (list[k] > list[k + 1]) {
-        swapp(list, k);
+        swapp(list, k, k + 1);
         swapped = true;
       }
     }
@@ -56,9 +53,8 @@ List<int> bubbleSortWhile(List<int> list) {
 
 
 
-
-void swapp(List<int> list, int index) {
-  int temp = list[index];
-  list[index] = list[index + 1];
-  list[index + 1] = temp;
+void swapp(List<int> list, int first, int second) {
+  int temp = list[first];
+  list[first] = list[second];
+  list[second] = temp;
 }
