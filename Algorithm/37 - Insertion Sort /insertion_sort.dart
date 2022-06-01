@@ -22,10 +22,6 @@ List<int> insertionSortAlgo(List<int> list) {
   return list;
 }
 
-
-
-
-
 // With For loop ..
 List<int> insertionSortForLoop(List<int> list) {
   for (int i = 1; i < list.length; i++) {
