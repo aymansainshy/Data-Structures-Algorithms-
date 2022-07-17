@@ -12,14 +12,14 @@ class LinkedList {
         this.size = 0;
     }
 
-    // Insert first node 
+    // Insert first node push
     insertFirst(data) {
         this.head = new Node(data, this.head);
         this.size++;
     }
 
 
-    // Insert last node 
+    // Insert last node  append
     insertLastNode(data) {
         let node = new Node(data);
         let current;
@@ -112,8 +112,8 @@ class LinkedList {
                 current = current.next;
             }
 
-            previous = current.next;
         }
+        previous = current.next;
     }
 
     // Clear list 
