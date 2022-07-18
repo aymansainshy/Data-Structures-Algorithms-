@@ -208,6 +208,31 @@ class LinkedList<T> extends Iterable<T> {
     size = 0;
   }
 
+  void printNodesRecursively<T>(Node<T>? node) {
+    if (node == null) return;
+
+    printNodesRecursively(node.next);
+
+    print(node.data);
+  }
+
+  void printListInReverse<T>(LinkedList<T> list) {
+    printNodesRecursively(list.head);
+  }
+
+  Node<T>? getMiddle<T>(LinkedList<T> list) {
+    var slow = list.head;
+    var fast = list.head;
+
+    while (fast?.next != null) {
+      fast = fast?.next?.next;
+      slow = slow?.next;
+    }
+    
+    return slow;
+  }
+
+
   @override
   String toString() {
     if (isEmpty) return 'Empty list !';
@@ -218,8 +243,7 @@ class LinkedList<T> extends Iterable<T> {
   Iterator<T> get iterator => _LinkedListIterator<T>(this);
 }
 
-
-// Add Iterator to iterate over emlement in linkedList ..... 
+// Add Iterator to iterate over emlement in linkedList .....
 class _LinkedListIterator<T> implements Iterator<T> {
   _LinkedListIterator(LinkedList<T> list) : _list = list;
 

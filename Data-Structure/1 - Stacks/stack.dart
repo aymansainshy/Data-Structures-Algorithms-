@@ -39,10 +39,22 @@ class Stack<T> {
   // Creating a Stack From an Iterable ...
   Stack.of(Iterable<T> elements) : _storage = List<T>.of(elements);
 
+  // One of the prime use cases for stacks is to facilitate backtracking.
+  // If you push a sequence of values into the stack, sequentially popping the stack will give you the values in reverse order.
+  void printInReverse<T>(List<T> list) {
+    var stack = Stack<T>();
+    for (T value in list) {
+      stack.push(value);
+    }
+    while (stack.isNotEmpty) {
+      print(stack.pop());
+    }
+  }
+
   @override
   String toString() {
     return '--- Top ---\n'
         '${_storage.reversed.join('\n')}'
-          '\n-----------';
+        '\n-----------';
   }
 }
