@@ -27,6 +27,7 @@ void main() {
   for (var node in linkedList) {
     print(node);
   }
+
   // print(linkedList.getAt(3));
 }
 
@@ -217,6 +218,8 @@ class LinkedList<T> extends Iterable<T> {
   Iterator<T> get iterator => _LinkedListIterator<T>(this);
 }
 
+
+// Add Iterator to iterate over emlement in linkedList ..... 
 class _LinkedListIterator<T> implements Iterator<T> {
   _LinkedListIterator(LinkedList<T> list) : _list = list;
 
