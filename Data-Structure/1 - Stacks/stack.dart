@@ -20,7 +20,7 @@ void main() {
 }
 
 // NOTE : However, a Stack’s purpose is to limit the number of ways to access your data.
-class Stack<T> {
+class Stack<T> { // O(1)
   Stack() : _storage = <T>[];
 
   final List<T> _storage;
@@ -47,7 +47,7 @@ class Stack<T> {
     for (T value in list) {
       stack.push(value);
     }
-    
+
     while (stack.isNotEmpty) {
       print(stack.pop());
     }
