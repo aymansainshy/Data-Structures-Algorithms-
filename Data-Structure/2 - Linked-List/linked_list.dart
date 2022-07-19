@@ -18,15 +18,20 @@ void main() {
   print(linkedList.toString());
   print(linkedList.size.toString());
 
-  linkedList.removeAt(3);
+  // linkedList.removeAt(2);
   // linkedList.pop();
   // linkedList.removeAfter(currentNode);
   print(linkedList.toString());
   print(linkedList.size.toString());
 
-  for (var node in linkedList) {
-    print(node);
-  }
+  print(linkedList.getMiddle(linkedList)?.data);
+
+  // linkedList.printListInReverse(linkedList);
+  linkedList.printNodesRecursively(linkedList.head);
+
+  // for (var node in linkedList) {
+  //   print(node);
+  // }
 
   // print(linkedList.getAt(3));
 }
@@ -208,30 +213,37 @@ class LinkedList<T> extends Iterable<T> {
     size = 0;
   }
 
+  // To print Reverse Linked List ... 
   void printNodesRecursively<T>(Node<T>? node) {
     if (node == null) return;
-
     printNodesRecursively(node.next);
-
     print(node.data);
   }
 
   void printListInReverse<T>(LinkedList<T> list) {
     printNodesRecursively(list.head);
   }
+ 
+ // To Reverse Linked List ... 
+  void reverse() {
+    final tempList = LinkedList<T>();
+    for (final value in this) {
+      tempList.push(value);
+    }
+    head = tempList.head;
+  }
 
   Node<T>? getMiddle<T>(LinkedList<T> list) {
-    var slow = list.head;
     var fast = list.head;
+    var slow = list.head;
 
     while (fast?.next != null) {
       fast = fast?.next?.next;
       slow = slow?.next;
     }
-    
+
     return slow;
   }
-
 
   @override
   String toString() {
@@ -268,3 +280,15 @@ class _LinkedListIterator<T> implements Iterator<T> {
     return _currentNode != null;
   }
 }
+
+
+
+// extension ReversibleLinkedList<E> on LinkedList<E> {
+//   void reverse() {
+//     final tempList = LinkedList<E>();
+//     for (final value in this) {
+//       tempList.push(value);
+//     }
+//     head = tempList.head;
+//   }
+// }

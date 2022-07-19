@@ -43,9 +43,11 @@ class Stack<T> {
   // If you push a sequence of values into the stack, sequentially popping the stack will give you the values in reverse order.
   void printInReverse<T>(List<T> list) {
     var stack = Stack<T>();
+
     for (T value in list) {
       stack.push(value);
     }
+    
     while (stack.isNotEmpty) {
       print(stack.pop());
     }
