@@ -1,4 +1,5 @@
 import '../2 - Linked-List/single_linked_list.dart';
+import '../4 - Circular-buffer/circular_buffer.dart';
 
 void main() {
   // final queue = QueueList<String>();
@@ -18,22 +19,37 @@ void main() {
   // queue.dequeue();
   // print(queue);
 
-  final queueLinkedList = QueueLinkedList<int>();
+  // final queueLinkedList = QueueLinkedList<int>();
 
-  queueLinkedList.enqueue(1);
-  queueLinkedList.enqueue(3);
-  queueLinkedList.enqueue(10);
-  queueLinkedList.enqueue(-56);
+  // queueLinkedList.enqueue(1);
+  // queueLinkedList.enqueue(3);
+  // queueLinkedList.enqueue(10);
+  // queueLinkedList.enqueue(-56);
 
-  print(queueLinkedList);
+  // print(queueLinkedList);
 
-  queueLinkedList.dequeue();
-  print(queueLinkedList);
+  // queueLinkedList.dequeue();
+  // print(queueLinkedList);
 
-  print(queueLinkedList.peek);
+  // print(queueLinkedList.peek);
 
-  queueLinkedList.dequeue();
-  print(queueLinkedList);
+  // queueLinkedList.dequeue();
+  // print(queueLinkedList);
+
+  final queue = QueueRingBuffer<int>(4);
+  queue.enqueue(1);
+  queue.enqueue(2);
+  queue.enqueue(3);
+  queue.enqueue(4);
+  
+  print(queue.peek);
+
+  print(queue.dequeue());
+  print(queue); 
+
+  
+  print(queue.peek);
+  print(queue);
 }
 
 // • enqueue: Insert an element at the back of the queue. Return true if the operation was successful.
@@ -106,4 +122,37 @@ class QueueLinkedList<T> implements Queue<T> {
 
   @override
   String toString() => _list.toString();
+}
+
+// Ring Buffer Implementation .... Circular buffer
+/* 
+ A ring buffer, also known as a circular buffer, is a fixed-size list.
+ This data structure strategically wraps around to the beginning when there are no more items to remove at the end.
+*/
+
+class QueueRingBuffer<T> implements Queue<T> {
+  QueueRingBuffer(int length) : _ringBuffer = RingBuffer<T>(length);
+
+  final RingBuffer<T> _ringBuffer;
+
+  @override
+  bool enqueue(T element) {
+    if (_ringBuffer.isFull) {
+      return false;
+    }
+    _ringBuffer.write(element);
+    return true;
+  }
+
+  @override
+  T? dequeue() => _ringBuffer.read();
+
+  @override
+  bool get isEmpty => _ringBuffer.isEmpty;
+
+  @override
+  T? get peek => _ringBuffer.peek;
+
+  @override
+  String toString() => _ringBuffer.toString();
 }
