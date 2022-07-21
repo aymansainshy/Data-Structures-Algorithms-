@@ -2,51 +2,52 @@ import '../2 - Linked-List/single_linked_list.dart';
 import '../4 - ring-buffer/ring_buffer.dart';
 
 void main() {
-  // final queue = CircularQueue<int>(4);
-  // queue.enqueue(1);
-  // queue.enqueue(2);
-  // queue.enqueue(3);
-  // queue.enqueue(4);
+  final queue = QueueRingBuffer<int>(4);
+  queue.enqueue(1);
+  queue.enqueue(2);
+  queue.enqueue(3);
+  queue.enqueue(4);
 
-  // print(queue);
+  print(queue);
 
-  // print("Front .. ${queue.peek}");
+  print("Front .. ${queue.peek}");
+  // print("Rear .. ${queue.}");
+  // print("Is Full .. ${queue.isFull}");
+  print("Is Impty.. ${queue.isEmpty} \n");
+
+  print(queue.dequeue());
+  print(queue);
+
+  print("Front .. ${queue.peek}");
   // print("Rear .. ${queue.rear}");
   // print("Is Full .. ${queue.isFull}");
-  // print("Is Impty.. ${queue.isEmpty} \n");
+  print("Is Impty.. ${queue.isEmpty} \n");
 
-  // print(queue.dequeue());
+  queue.enqueue(5);
+  print(queue);
+   print("Front .. ${queue.peek}");
+
+  // final queue = QueueList2<String>(4);
+
+  // queue.enqueue("Ayman");
+  // queue.enqueue("Mohammed");
+  // queue.enqueue("Ali");
+  // queue.enqueue("Adam");
+
   // print(queue);
+  // print(queue.peek);
 
-  // print("Front .. ${queue.peek}");
-  // print("Rear .. ${queue.rear}");
-  // print("Is Full .. ${queue.isFull}");
-  // print("Is Impty.. ${queue.isEmpty} \n");
-
-  // queue.enqueue(1);
+  // queue.dequeue();
   // print(queue);
+  // print(queue.peek);
 
-  final queue = QueueList2<String>(4);
+  // queue.enqueue("Yahia");
+  // print(queue);
+  // print(queue.peek);
 
-  queue.enqueue("Ayman");
-  queue.enqueue("Mohammed");
-  queue.enqueue("Ali");
-  queue.enqueue("Adam");
-
-  print(queue);
-  print(queue.peek);
-
-  queue.dequeue();
-  print(queue);
-  print(queue.peek);
-
-  queue.enqueue("Yahia");
-  print(queue);
-  print(queue.peek);
-
-  queue.dequeue();
-  print(queue);
-  print(queue.peek);
+  // queue.dequeue();
+  // print(queue);
+  // print(queue.peek);
 
 
   // final queueLinkedList = QueueLinkedList<int>();

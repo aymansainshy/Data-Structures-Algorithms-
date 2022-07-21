@@ -13,6 +13,7 @@ void main() {
   print("1 .. ${ringBufferQueue.read()}");
   print("2 .. ${ringBufferQueue.read()}");
   print("3 .. ${ringBufferQueue.read()}");
+  print("Peek .. ${ringBufferQueue.peek}");
   print("4 .. ${ringBufferQueue.read()}");
   print("5 .. ${ringBufferQueue.read()}");
   print("6 .. ${ringBufferQueue.read()}");
@@ -22,8 +23,9 @@ void main() {
   print(ringBufferQueue.toString());
   print(ringBufferQueue.isFull);
 
-  // print("All .. ${ringBufferQueue.read()}");
-  // print(ringBufferQueue.toString());
+  print("All .. ${ringBufferQueue.read()}");
+  print(ringBufferQueue);
+  print("Peek .. ${ringBufferQueue.peek}");
 }
 
 class RingBuffer<E> {
@@ -52,6 +54,7 @@ class RingBuffer<E> {
   E? read() {
     if (isEmpty) return null;
     final element = _list[_readIndex];
+    _list[_readIndex] = null;
     _readIndex = _advance(_readIndex);
     _size--;
     return element;
@@ -61,17 +64,18 @@ class RingBuffer<E> {
 
   @override
   String toString() {
-    final text = StringBuffer();
-    text.write('[');
-    int index = _readIndex;
-    while (index != _writeIndex) {
-      if (index != _readIndex) {
-        text.write(', ');
-      }
-      text.write(_list[index % _list.length]);
-      index++;
-    }
-    text.write(']');
-    return text.toString();
+    return _list.toString();
+    // final text = StringBuffer();
+    // text.write('[');
+    // int index = _readIndex;
+    // while (index != _writeIndex) {
+    //   if (index != _readIndex) {
+    //     text.write(', ');
+    //   }
+    //   text.write(_list[index % _list.length]);
+    //   index++;
+    // }
+    // text.write(']');
+    // return text.toString();
   }
 }
