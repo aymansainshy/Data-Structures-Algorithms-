@@ -11,7 +11,7 @@ void main() {
   print(queue);
 
   print("Front .. ${queue.peek}");
-  // print("Rear .. ${queue.}");
+  // print("Rear .. ${queue.rear}");
   // print("Is Full .. ${queue.isFull}");
   print("Is Impty.. ${queue.isEmpty} \n");
 
@@ -25,7 +25,7 @@ void main() {
 
   queue.enqueue(5);
   print(queue);
-   print("Front .. ${queue.peek}");
+  print("Front .. ${queue.peek}");
 
   // final queue = QueueList2<String>(4);
 
@@ -48,7 +48,6 @@ void main() {
   // queue.dequeue();
   // print(queue);
   // print(queue.peek);
-
 
   // final queueLinkedList = QueueLinkedList<int>();
 
@@ -181,7 +180,7 @@ class QueueLinkedList<T> implements Queue<T> {
   String toString() => _list.toString();
 }
 
-// Ring Buffer Implementation .... Circular buffer -- Speace Complexity is O(n)
+// Ring Buffer Implementation .... Circular buffer -- Speace Complexity is O(n) But this doesn't require new memory allocation
 /* 
  A ring buffer, also known as a circular buffer, is a fixed-size list.
  This data structure strategically wraps around to the beginning when there are no more items to remove at the end.
@@ -214,7 +213,7 @@ class QueueRingBuffer<T> implements Queue<T> {
   String toString() => _ringBuffer.toString();
 }
 
-// Ring Buffer Implementation 2 .... Circular buffer -- Speace Complexity is O(1)
+// Ring Buffer Implementation 2 .... Circular buffer -- Speace Complexity is O(n) But this doesn't require new memory allocation
 class CircularQueue<T> implements Queue<T> {
   CircularQueue(int length)
       : _list = List.filled(length, null, growable: false);
@@ -260,4 +259,43 @@ class CircularQueue<T> implements Queue<T> {
 
   @override
   String toString() => _list.toString();
+}
+
+// Double-Stack Implementation .. Speace Complexity is O(n) 
+class QueueStack<T> implements Queue<T> {
+  final _leftStack = <T>[];
+  final _rightStack = <T>[];
+
+  @override // O(1) worst O(n)
+  bool enqueue(T element) {
+    _rightStack.add(element);
+    return true;
+  }
+
+  @override // O(1) worst O(n)
+  T? dequeue() {
+    if (_leftStack.isEmpty) {
+      _leftStack.addAll(_rightStack.reversed);
+      _rightStack.clear();
+    }
+
+    if (_leftStack.isEmpty) return null;
+
+    return _leftStack.removeLast();
+  }
+
+  @override
+  bool get isEmpty => _leftStack.isEmpty && _rightStack.isEmpty; // O(1)
+
+  @override
+  T? get peek => _leftStack.isNotEmpty ? _leftStack.last : _rightStack.first; // O(1)
+
+  @override
+  String toString() {
+    final combined = [
+      ..._leftStack.reversed,
+      ..._rightStack,
+    ].join(', ');
+    return '[$combined]';
+  }
 }

@@ -28,10 +28,19 @@ void main() {
   print("Peek .. ${ringBufferQueue.peek}");
 }
 
-class RingBuffer<E> {
+
+/* 
+ - You first create a ring buffer that has a fixed size of 4.
+   The ring buffer has two pointers that keep track of two things:
+
+1. The read pointer keeps track of the front of the queue.
+2. The write pointer keeps track of the next available slot so that you can
+   overwriteexisting elements that have already been read. */
+
+class RingBuffer<T> {
   RingBuffer(int length) : _list = List.filled(length, null, growable: false);
 
-  final List<E?> _list;
+  final List<T?> _list;
   int _writeIndex = 0;
   int _readIndex = 0;
   int _size = 0;
@@ -40,7 +49,7 @@ class RingBuffer<E> {
 
   bool get isEmpty => _size == 0;
 
-  void write(E element) {
+  void write(T element) {
     if (isFull) throw Exception('Buffer is full');
     _list[_writeIndex] = element;
     _writeIndex = _advance(_writeIndex);
@@ -51,16 +60,16 @@ class RingBuffer<E> {
     return (index == _list.length - 1) ? 0 : index + 1;
   }
 
-  E? read() {
+  T? read() {
     if (isEmpty) return null;
     final element = _list[_readIndex];
-    _list[_readIndex] = null;
+    // _list[_readIndex] = null; 
     _readIndex = _advance(_readIndex);
     _size--;
     return element;
   }
 
-  E? get peek => (isEmpty) ? null : _list[_readIndex];
+  T? get peek => (isEmpty) ? null : _list[_readIndex];
 
   @override
   String toString() {
