@@ -27,6 +27,18 @@ void main() {
   print(queue);
   print("Front .. ${queue.peek}");
 
+  final monopolyTurn = QueueRingBuffer<String>(4);
+  monopolyTurn.enqueue('Ray');
+  monopolyTurn.enqueue('Vicki');
+  monopolyTurn.enqueue('Luke');
+  monopolyTurn.enqueue('Pablo');
+  String? player;
+  for (var i = 1; i <= 20; i++) {
+    player = monopolyTurn.nextPlayer();
+    print(player);
+  }
+  print('$player wins!');
+
   // final queue = QueueList2<String>(4);
 
   // queue.enqueue("Ayman");
@@ -261,7 +273,7 @@ class CircularQueue<T> implements Queue<T> {
   String toString() => _list.toString();
 }
 
-// Double-Stack Implementation .. Speace Complexity is O(n) 
+// Double-Stack Implementation .. Speace Complexity is O(n)
 class QueueStack<T> implements Queue<T> {
   final _leftStack = <T>[];
   final _rightStack = <T>[];
@@ -288,7 +300,8 @@ class QueueStack<T> implements Queue<T> {
   bool get isEmpty => _leftStack.isEmpty && _rightStack.isEmpty; // O(1)
 
   @override
-  T? get peek => _leftStack.isNotEmpty ? _leftStack.last : _rightStack.first; // O(1)
+  T? get peek =>
+      _leftStack.isNotEmpty ? _leftStack.last : _rightStack.first; // O(1)
 
   @override
   String toString() {
@@ -297,5 +310,15 @@ class QueueStack<T> implements Queue<T> {
       ..._rightStack,
     ].join(', ');
     return '[$combined]';
+  }
+}
+
+extension BoardGameManager<E> on QueueRingBuffer<E> {
+  E? nextPlayer() {
+    final person = dequeue();
+    if (person != null) {
+      enqueue(person);
+    }
+    return person;
   }
 }
