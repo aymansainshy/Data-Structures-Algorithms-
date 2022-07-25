@@ -302,6 +302,8 @@ class QueueStack<T> implements Queue<T> {
   @override
   T? get peek =>
       _leftStack.isNotEmpty ? _leftStack.last : _rightStack.first; // O(1)
+  
+  int get length => _leftStack.length + _rightStack.length; // O(1)
 
   @override
   String toString() {
