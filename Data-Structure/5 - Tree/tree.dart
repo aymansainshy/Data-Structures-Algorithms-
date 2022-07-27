@@ -112,7 +112,7 @@ class TreeNode<T> {
   TreeNode? search(T data) {
     TreeNode? result;
 
-    forEachLevelOrder((node) {
+    forEachLevelOrder((node) { // O(n)
       if (node.data == data) {
         result = node;
       }
@@ -124,15 +124,14 @@ class TreeNode<T> {
   // Print a Tree in Level Order
   void printEachLevel<T>(TreeNode<T> tree) {
     final result = StringBuffer();
-    // 1
+
     var queue = QueueStack<TreeNode<T>>();
     var nodesLeftInCurrentLevel = 0;
     queue.enqueue(tree);
-    // 2
+
     while (!queue.isEmpty) {
-      // 3
       nodesLeftInCurrentLevel = queue.length;
-      // 4
+  
       while (nodesLeftInCurrentLevel > 0) {
         final node = queue.dequeue();
         if (node == null) break;
@@ -142,7 +141,7 @@ class TreeNode<T> {
         }
         nodesLeftInCurrentLevel -= 1;
       }
-      // 5
+   
       result.write('\n');
     }
     print(result);
@@ -172,6 +171,7 @@ class Padding extends Widget {
   double value;
   Widget? child;
 }
+
 class Text extends Widget {
   Text([this.value = '']);
   String value;
