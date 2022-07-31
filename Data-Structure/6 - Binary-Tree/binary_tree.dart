@@ -96,8 +96,8 @@ class BinaryNode<T> {
     return _diagram(this);
   }
 
-  String _diagram(BinaryNode<T>? node,
-      [String top = '', String root = '', String bottom = '']) {
+  String _diagram(BinaryNode<T>? node, [String top = '', String root = '', String bottom = '']) {
+    
     if (node == null) {
       return '$root null\n';
     }
