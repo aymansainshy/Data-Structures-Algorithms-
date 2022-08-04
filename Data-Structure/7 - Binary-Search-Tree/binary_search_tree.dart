@@ -44,7 +44,6 @@ class BinarySearchTree<T extends Comparable<dynamic>> {
   }
 
   BinaryNode<T> _insertAt(BinaryNode<T>? node, T data) {
-    // O(log n)
     if (node == null) {
       return BinaryNode(data);
     }
@@ -111,11 +110,10 @@ class BinarySearchTree<T extends Comparable<dynamic>> {
       if (node.rightChild == null) {
         return node.leftChild;
       }
-      
+
       // node.data = node.rightChild!.min.data;
       node.data = _findMin(node.rightChild!)!.data;
       node.rightChild = _remove(node.rightChild, node.data);
-
     } else if (data.compareTo(node.data) < 0) {
       node.leftChild = _remove(node.leftChild, data);
     } else {
@@ -139,10 +137,9 @@ extension _MinFinder<T> on BinaryNode<T> {
   BinaryNode<T> get min => leftChild == null ? this : leftChild!.min;
 }
 
-
 /*
   Key Points to remember:
-  
+
     - The left subtree of a node contains only nodes with value less than the perent nodes.
     - The right subtree of a node contains only nodes with value greater or equal than the pernent nodes.
     - As a result, lookup, insert and removal have an average time complexity of O(log n).
@@ -153,3 +150,58 @@ extension _MinFinder<T> on BinaryNode<T> {
 • Performance will degrade to O(n) as the tree becomes unbalanced.
   This is undesirable, but self-balancing trees such as the AVL tree can overcome the problem.
 */
+
+// Binary Tree or Binary Search Tree // O(n) ...........
+extension Checker<T extends Comparable<dynamic>> on BinaryNode<T> {
+  bool isBinarySearchTree() {
+    return _isBST(this, min: null, max: null);
+  }
+
+  bool _isBST(BinaryNode<T>? tree, {T? min, T? max}) {
+    if (tree == null) return true;
+
+    if (min != null && tree.data.compareTo(min) <= 0) {
+      return false;
+    } else if (max != null && tree.data.compareTo(max) >= 0) {
+      return false;
+    }
+
+    return _isBST(tree.leftChild, min: min, max: tree.data) &&
+        _isBST(tree.rightChild, min: tree.data, max: max);
+  }
+}
+
+// Equality : Given two binary trees, how would you test if they are equal or not?
+// The time complexity of this function is O(n). The space complexity of this function is also O(n).
+bool treesEqual(BinarySearchTree first, BinarySearchTree second) {
+  return _isEqual(first.root, second.root);
+}
+
+bool _isEqual(BinaryNode? first, BinaryNode? second) {
+  if (first == null && second == null) return true;
+  if (first == null || second == null) return false;
+
+  return first.data == second.data &&
+      _isEqual(first.leftChild, second.leftChild) &&
+      _isEqual(first.rightChild, second.rightChild);
+}
+
+// Is it a Subtree? Create a method that checks if the current tree contains all the elements of another tree.
+// The time and space complexity for this algorithm is O(n).
+extension Subtree<T> on BinarySearchTree {
+  bool containsSubtree(BinarySearchTree subtree) {
+    Set set = <T>{};
+
+    root?.traverseInOrder((node) {
+      set.add(node);
+    });
+
+    var isEqual = true;
+
+    subtree.root?.traverseInOrder((node) {
+      isEqual = isEqual && set.contains(node);
+    });
+
+    return isEqual;
+  }
+}
