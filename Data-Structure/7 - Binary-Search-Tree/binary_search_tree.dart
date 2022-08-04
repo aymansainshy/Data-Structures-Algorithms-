@@ -129,6 +129,28 @@ class BinarySearchTree<T extends Comparable<dynamic>> {
     return _findMin(node.leftChild);
   }
 
+  BinaryNode<T>? findMin2(BinaryNode<T>? node) {
+    if (node == null) return null;
+
+    BinaryNode<T>? currentNode = node;
+
+    while (currentNode?.leftChild != null) {
+      currentNode = currentNode?.leftChild;
+    }
+    return currentNode;
+  }
+
+  BinaryNode<T>? findMax(BinaryNode<T>? node) {
+    if (node == null) return null;
+
+    BinaryNode<T>? currentNode = node;
+
+    while (currentNode?.rightChild != null) {
+      currentNode = currentNode?.rightChild;
+    }
+    return currentNode;
+  }
+
   @override
   String toString() => root.toString();
 }
