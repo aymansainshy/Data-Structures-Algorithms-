@@ -145,10 +145,22 @@ class BinarySearchTree<T extends Comparable<dynamic>> {
 
     BinaryNode<T>? currentNode = node;
 
-    while (currentNode?.rightChild != null) {
-      currentNode = currentNode?.rightChild;
+    while (currentNode.rightChild != null) {
     }
     return currentNode;
+  }
+
+  int findHight(BinaryNode<T>? root) {
+    if (root == null) return 0;
+
+    int leftHight = findHight(root.leftChild);
+    int rightHight = findHight(root.rightChild);
+
+    if (leftHight > rightHight) {
+      return leftHight + 1;
+    } else {
+      return rightHight + 1;
+    }
   }
 
   @override
