@@ -204,3 +204,11 @@ class AvlTree<E extends Comparable<dynamic>> {
 extension _MinFinder<E> on AVLnode<E> {
   AVLnode<E> get min => leftChild?.min ?? this;
 }
+
+/*
+  Key Points
+• A self-balancing tree avoids performance degradation by performing a balancing procedure whenever you add or remove elements in the tree.
+• AVL trees preserve balance by readjusting parts of the tree when the tree is no longer balanced.
+• Balance is achieved by four types of tree rotations on node insertion and removal: right rotation,
+  left rotation, right-left rotation and left-right rotation.
+*/ 
