@@ -51,6 +51,14 @@ class TrieNode<T> {
 class StringTrie {
   TrieNode<int> root = TrieNode(key: null, parent: null);
 
+  // This for keeping track of all the Strings .
+  // but this can make you lose the space complexity that trie gave you.
+  final Set<String> _allStrings = {};
+  Set<String> get allStrings => _allStrings;
+
+  int get length => _allStrings.length;
+  bool get isEmpty => _allStrings.isEmpty;
+
   /*
     INSERTING ...
     The time complexity for this algorithm is O(k), where k is the number of code units you’re trying to insert.
@@ -69,6 +77,7 @@ class StringTrie {
     }
 
     current.isTerminating = true;
+    _allStrings.add(text);
   }
 
   /*
@@ -116,6 +125,7 @@ class StringTrie {
     }
 
     current.isTerminating = false;
+    _allStrings.remove(text);
 
     while (current.parent != null &&
         current.children.isEmpty &&
@@ -166,5 +176,23 @@ class StringTrie {
       );
     }
     return results;
+  }
+}
+
+// generic TRIE ..
+class Trie<E, T extends Iterable<E>> {
+  TrieNode<E> root = TrieNode(key: null, parent: null);
+
+  void insert(T collection) {
+    var current = root;
+
+    for (E element in collection) {
+      current.children[element] ??= TrieNode(
+        key: element,
+        parent: current,
+      );
+      current = current.children[element]!;
+    }
+    current.isTerminating = true;
   }
 }
