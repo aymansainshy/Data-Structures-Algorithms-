@@ -34,6 +34,8 @@ void main() {
 
   final path = dijkstra.shortestPath(b, a);
   print(path);
+
+  print(dijkstra.shortestPathsLists(a));
 }
 
 /*
@@ -45,6 +47,12 @@ void main() {
    1. Communicable disease transmission: Discovering where biological diseases are spreading the fastest.
    2. Telephone networks: Routing calls to the highest-bandwidth paths available in the network.
    3. Mapping: Finding the shortest and fastest paths for travelers.
+
+  
+  Key Points
+   • Dijkstra’s algorithm finds the shortest path from a starting vertex to the rest of the vertices in a graph.
+   • The algorithm is greedy, meaning it chooses the shortest path at each step.
+   • The priority queue data structure helps to efficiently return the vertex with the shortest path. 
 */
 
 class Pair<T> extends Comparable<Pair<T>> {
@@ -70,7 +78,6 @@ class Dijkstra<E> {
   final Graph<E> graph;
 
   Map<Vertex<E>, Pair<E>?> shortestPaths(Vertex<E> source) {
-    
     final queue = PriorityQueue<Pair<E>>(priority: Priority.min);
     final visited = <Vertex<E>>{};
     final paths = <Vertex<E>, Pair<E>?>{};
@@ -131,5 +138,21 @@ class Dijkstra<E> {
     }
 
     return path.reversed.toList();
+  }
+}
+
+extension ShortestPaths<E> on Dijkstra<E> {
+  Map<Vertex<E>, List<Vertex<E>>> shortestPathsLists(Vertex<E> source) {
+    final allPathsLists = <Vertex<E>, List<Vertex<E>>>{};
+
+    final allPaths = shortestPaths(source);
+
+    for (final vertex in graph.vertices) {
+      final path = shortestPath(source, vertex, paths: allPaths);
+
+      allPathsLists[vertex] = path;
+    }
+
+    return allPathsLists;
   }
 }
