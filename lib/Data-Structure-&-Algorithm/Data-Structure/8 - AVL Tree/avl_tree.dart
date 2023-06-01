@@ -177,16 +177,16 @@ class AvlTree<E extends Comparable<dynamic>> {
   AVLnode<E> balanced(AVLnode<E> node) {
     switch (node.balanceFactor) {
       case 2:
-        final AVLnode? left = node.leftChild!;
-        if (left != null && left.balanceFactor == -1) {
+        final AVLnode left = node.leftChild!;
+        if (left.balanceFactor == -1) {
           return leftRightRotate(node);
         } else {
           return rightRotate(node);
         }
 
       case -2:
-        final AVLnode? right = node.rightChild!;
-        if (right != null && right.balanceFactor == 1) {
+        final AVLnode right = node.rightChild!;
+        if (right.balanceFactor == 1) {
           return rightLeftRotate(node);
         } else {
           return leftRotate(node);

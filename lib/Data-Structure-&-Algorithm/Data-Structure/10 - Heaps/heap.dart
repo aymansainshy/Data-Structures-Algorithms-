@@ -90,7 +90,6 @@ class Heap<E extends Comparable<dynamic>> {
       child = parent;
       parent = _parentIndex(child);
     }
-    ;
   }
 
   /*

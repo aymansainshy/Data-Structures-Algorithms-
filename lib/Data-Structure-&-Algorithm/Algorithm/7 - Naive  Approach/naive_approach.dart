@@ -15,7 +15,7 @@ void naivApproach(String text, String pattern) {
     int j;
 
     for (j = 0; j < patternLength; j++) {
-      print(text[i + j] + " " + pattern[j]);
+      print("${text[i + j]} ${pattern[j]}");
 
       if (text[i + j] != pattern[j]) {
         print("Break !");

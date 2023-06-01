@@ -7,7 +7,7 @@ Map countChart(String text) {
   // Make a map (or object ) to hold the charactors
   Map resutl = {};
 
-  String newText = text.split(" ").toList().join(); // Without Spaces 
+  String newText = text.split(" ").toList().join(); // Without Spaces
 
   // Convert the text to Upercase or lowercase
   String lowerCaseText = newText.toLowerCase();
@@ -17,7 +17,7 @@ Map countChart(String text) {
   //   var charactor = String.fromCharCode(rune);
   //   print(charactor);
   //  });
-  
+
   for (int i = 0; i < lowerCaseText.length; i++) {
     String charactor = lowerCaseText[i];
     // Charactor found in the map ?? + 1
@@ -27,7 +27,6 @@ Map countChart(String text) {
       // Not found in the map 1
       resutl[charactor] = 1;
     }
-    ;
   }
 
   // return Map
