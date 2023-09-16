@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 /// Represents the elements that make up the [DoubleLinkedList].
 /// A [Node] can be either an *end* node, i.e. virtual nodes at the beginning and end of the [DoubleLinkedList]
 /// that don't contain any value, or an *inner* node, that do contain a value.
@@ -171,7 +173,7 @@ class DoubleLinkedList<E> {
   /// If [this] is empty, then a [LinkedListException.noElement] is thrown.
   /// If [this] has only one element, it is returned.
   E reduce(E Function(E value, E element) combine) {
-    if (isEmpty) throw LinkedListException.noElement();
+    if (isEmpty) throw const LinkedListException.noElement();
     return content.reduce(combine);
   }
 
@@ -202,7 +204,7 @@ class DoubleLinkedList<E> {
       if (test(node.content)) return node;
     }
     if (orEnd) return end;
-    throw LinkedListException.noElement();
+    throw const LinkedListException.noElement();
   }
 
   /// Returns the last [Node] whose value satisfies [test].
@@ -212,7 +214,7 @@ class DoubleLinkedList<E> {
       if (test(node.content)) return node;
     }
     if (orBegin) return begin;
-    throw LinkedListException.noElement();
+    throw const LinkedListException.noElement();
   }
 
   @override
@@ -220,31 +222,31 @@ class DoubleLinkedList<E> {
 }
 
 // extends Equatable
-class LinkedListException {
+class LinkedListException extends Equatable {
   final String message;
 
   @override
   List<Object> get props => [message];
 
-  LinkedListException._(this.message);
+  const LinkedListException._(this.message);
 
   /// Represents error that occurs when trying to select an element that doesn't exists.
   /// For example, trying to use [DoubleLinkedList.reduce] with an empty list
-  LinkedListException.noElement() : this._('No element');
+  const LinkedListException.noElement() : this._('No element');
 
   /// Represents error that occurs when trying to remove a begin or end node
-  LinkedListException.cannotRemoveEnd()
+  const LinkedListException.cannotRemoveEnd()
       : this._('An end node cannot be removed');
 
   /// Represents error that occurs when trying to access the content of an end node
-  LinkedListException.endNoContent() : this._('End node has no content');
+  const LinkedListException.endNoContent() : this._('End node has no content');
 
   /// Represents error that occurs when trying to insert a node before the begin node
-  LinkedListException.cannotInsertBeforeBegin()
+  const LinkedListException.cannotInsertBeforeBegin()
       : this._('A node cannot be inserted before begin node');
 
   /// Represents error that occurs when trying to insert a node after the end node
-  LinkedListException.cannotInsertAfterEnd()
+  const LinkedListException.cannotInsertAfterEnd()
       : this._('A node cannot be inserted after end node');
 }
 

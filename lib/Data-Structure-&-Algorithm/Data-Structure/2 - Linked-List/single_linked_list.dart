@@ -213,7 +213,7 @@ class LinkedList<T> extends Iterable<T> {
     size = 0;
   }
 
-  // To print Reverse Linked List ... 
+  // To print Reverse Linked List ...
   void printNodesRecursively<T>(Node<T>? node) {
     if (node == null) return;
     printNodesRecursively(node.next);
@@ -223,8 +223,8 @@ class LinkedList<T> extends Iterable<T> {
   void printListInReverse<T>(LinkedList<T> list) {
     printNodesRecursively(list.head);
   }
- 
- // To Reverse Linked List ... 
+
+  // To Reverse Linked List ...
   void reverse() {
     final tempList = LinkedList<T>();
     for (final value in this) {
@@ -280,8 +280,6 @@ class _LinkedListIterator<T> implements Iterator<T> {
     return _currentNode != null;
   }
 }
-
-
 
 // extension ReversibleLinkedList<E> on LinkedList<E> {
 //   void reverse() {
